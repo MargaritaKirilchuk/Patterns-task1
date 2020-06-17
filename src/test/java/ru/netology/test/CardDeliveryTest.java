@@ -61,7 +61,7 @@ public class CardDeliveryTest {
         $("[data-test-id=city] input").sendKeys(city);
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL, "a"));
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
-        $("[data-test-id=date] input").sendKeys();
+        $("[data-test-id=date] input").sendKeys(invalidDate);
         $("[data-test-id=name] input").sendKeys(name);
         $("[data-test-id=phone] input").sendKeys(phone);
         $("[data-test-id=agreement]").click();
