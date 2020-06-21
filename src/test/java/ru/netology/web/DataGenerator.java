@@ -20,9 +20,9 @@ public class DataGenerator {
             return randomCity;
         }
 
-        public static String validDate() {
+        public static String validDate(int days) {
             LocalDate today = LocalDate.now();
-            LocalDate date = today.plusDays(3);
+            LocalDate date = today.plusDays(days);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             String validDate= date.format(formatter);
             return validDate;

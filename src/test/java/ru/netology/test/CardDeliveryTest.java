@@ -1,7 +1,6 @@
 package ru.netology.test;
 
 import com.codeborne.selenide.SelenideElement;
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -13,10 +12,10 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
-    private Faker faker;
     private DataGenerator data = new DataGenerator();
     private String city = data.city();
-    private String validDate = data.validDate();
+    private String validDate = data.validDate(3);
+    private String otherValidDate = data.validDate(5);
     private String name = data.name();
     private String phone = data.phone();
     private String invalidDate = data.invalidDate();
@@ -51,6 +50,9 @@ public class CardDeliveryTest {
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Запланировать")).click();
         $(withText("Успешно!")).waitUntil(visible, 15000);
+        $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
+        $("[data-test-id=date] input").sendKeys(otherValidDate);
         $$("button").find(exactText("Запланировать")).click();
         $$("button").find(exactText("Перепланировать")).click();
         $(withText("Успешно!")).waitUntil(visible, 15000);
